@@ -1,0 +1,9 @@
+SELECT 
+    SUM(OD.UnitPrice * OD.Quantity * (1 - OD.Discount)) AS TotalSales
+FROM 
+    Orders O
+JOIN 
+    OrderDetails OD ON O.OrderID = OD.OrderID
+WHERE 
+    O.OrderDate >= '2020-07-01' 
+    AND O.OrderDate <= '2020-12-31';
