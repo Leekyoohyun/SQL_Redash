@@ -1,0 +1,14 @@
+SELECT 
+    DATE_FORMAT(O.OrderDate, '%Y-%m') AS OrderMonth,
+    SUM(OD.UnitPrice * OD.Quantity * (1 - OD.Discount)) AS TotalSales
+FROM 
+    Orders O
+JOIN 
+    OrderDetail OD ON O.Id = OD.OrderID
+WHERE 
+    O.OrderDate >= '2020-07-01' 
+    AND O.OrderDate <= '2020-12-31'
+GROUP BY 
+    DATE_FORMAT(O.OrderDate, '%Y-%m')
+ORDER BY 
+    OrderMonth;
